@@ -3,6 +3,7 @@
 __author__ = 'eraserking'
 
 import sys
+import matplotlib.pyplot as plt
 
 height = 20
 width = 80
@@ -35,6 +36,14 @@ def parseXmlFile(fileName):
     countByPeriod = combineTimePeriod(countBySecond, totalTimeInSecond, width - 5)
 
     drawCount(countByPeriod, totalTimeInSecond)
+
+    # Then we generate time table by 15 seconds
+    countByPeriod = combineTimePeriod(countBySecond, totalTimeInSecond, totalTimeInSecond // 15)
+
+    plotX = sorted(countByPeriod.keys())
+    plotY = [countByPeriod[x] for x in plotX]
+    plt.plot(plotX, plotY)
+    plt.show()
 
 
 def getLastSecond(countBySecond):
