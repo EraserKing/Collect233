@@ -40,9 +40,21 @@ def parseXmlFile(fileName):
     # Then we generate time table by 15 seconds
     countByPeriod = combineTimePeriod(countBySecond, totalTimeInSecond, totalTimeInSecond // 15)
 
+    drawFigure(countByPeriod, fileName)
+
+
+def drawFigure(countByPeriod, title):
+    plt.figure(figsize=(15, 8))
     plotX = sorted(countByPeriod.keys())
     plotY = [countByPeriod[x] for x in plotX]
     plt.plot(plotX, plotY)
+    # Set texts
+    plt.xlabel('Time')
+    plt.ylabel('Count')
+    plt.title(title)
+    # Set plot X axis texts (by minute)
+    plotX = [x for x in plotX if x % 60 == 0]
+    plt.xticks(plotX, [x // 60 for x in plotX])
     plt.show()
 
 
