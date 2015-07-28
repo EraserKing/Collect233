@@ -127,4 +127,6 @@ def drawCount(countByPeriod, totalTimeBySecond):
 
 
 if __name__ == '__main__':
+    if(len(sys.argv) != 2):
+        print('USAGE: Collect233.py <XML file name>')
     parseXmlFile(sys.argv[1])
